@@ -48,11 +48,14 @@ function render(persons, activeConditions, days) {
         <span class="item-name">${item.name}</span>
         <div class="item-right">
           <span class="item-qty">${qty}<small>${item.unit}</small></span>
-          <label class="switch">
-            <input type="checkbox" data-id="${item.id}" ${isChecked ? "checked" : ""} />
-            <span class="switch-track"></span>
-          </label>
-          <span class="switch-label ${isChecked ? "has" : ""}">${isChecked ? "ある" : "ない"}</span>
+          <div class="switch-wrap">
+            <span class="switch-label-off ${!isChecked ? "active" : ""}">ない</span>
+            <label class="switch">
+              <input type="checkbox" data-id="${item.id}" ${isChecked ? "checked" : ""} />
+              <span class="switch-track"></span>
+            </label>
+            <span class="switch-label-on ${isChecked ? "active" : ""}">ある</span>
+          </div>
         </div>
       `;
       ul.appendChild(li);
@@ -88,9 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!input) return;
     const id = parseInt(input.dataset.id, 10);
     checkedItems[id] = input.checked;
-    const label = input.closest("li").querySelector(".switch-label");
-    label.textContent = input.checked ? "ある" : "ない";
-    label.classList.toggle("has", input.checked);
+    const wrap = input.closest(".switch-wrap");
+    wrap.querySelector(".switch-label-off").classList.toggle("active", !input.checked);
+    wrap.querySelector(".switch-label-on").classList.toggle("active", input.checked);
   });
 
   tabBtns.forEach(btn => {

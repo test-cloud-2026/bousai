@@ -223,14 +223,34 @@ main {
   transform: translateX(20px);
 }
 
-.switch-label {
-  font-size: 0.8rem;
-  color: #aaa;
-  width: 24px;
-  flex-shrink: 0;
+.switch-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.switch-label.has {
-  color: #d94f3d;
+.switch-label-off,
+.switch-label-on {
+  font-size: 0.75rem;
   font-weight: 700;
+  min-width: 22px;
+  text-align: center;
+  opacity: 0.2;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.switch-label-off {
+  color: #555;
+}
+
+.switch-label-off.active {
+  opacity: 1;
+}
+
+.switch-label-on {
+  color: #d94f3d;
+}
+
+.switch-label-on.active {
+  opacity: 1;
 }
