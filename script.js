@@ -9,6 +9,13 @@ function calcRequired(item, persons) {
   }
 }
 
+function filterItems(items, activeConditions) {
+  return items.filter(item => {
+    if (!item.conditions) return true;
+    return item.conditions.some(c => activeConditions.has(c));
+  });
+}
+
 function groupByCategory(items) {
   return items.reduce((acc, item) => {
     (acc[item.category] ??= []).push(item);
@@ -16,11 +23,12 @@ function groupByCategory(items) {
   }, {});
 }
 
-function render(persons) {
+function render(persons, activeConditions) {
   const container = document.getElementById("stock-list");
   container.innerHTML = "";
 
-  const grouped = groupByCategory(stockItems);
+  const filtered = filterItems(stockItems, activeConditions);
+  const grouped = groupByCategory(filtered);
 
   for (const [category, items] of Object.entries(grouped)) {
     const section = document.createElement("section");
@@ -46,14 +54,24 @@ function render(persons) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("persons");
+  const personsInput = document.getElementById("persons");
+  const condCheckboxes = document.querySelectorAll(".cond-checkbox");
 
-  function update() {
-    const val = parseInt(input.value, 10);
-    const persons = isNaN(val) || val < 1 ? 1 : val;
-    render(persons);
+  function getActiveConditions() {
+    const active = new Set();
+    condCheckboxes.forEach(cb => {
+      if (cb.checked) active.add(cb.dataset.cond);
+    });
+    return active;
   }
 
-  input.addEventListener("input", update);
+  function update() {
+    const val = parseInt(personsInput.value, 10);
+    const persons = isNaN(val) || val < 1 ? 1 : val;
+    render(persons, getActiveConditions());
+  }
+
+  personsInput.addEventListener("input", update);
+  condCheckboxes.forEach(cb => cb.addEventListener("change", update));
   update();
 });
