@@ -10,7 +10,7 @@
 
   <header>
     <h1>防災備蓄チェックリスト</h1>
-    <p>3日間の備蓄目安を人数から自動計算します</p>
+    <p>備蓄目安を人数から自動計算します</p>
   </header>
 
   <div class="tab-section">
@@ -41,15 +41,22 @@
   </div>
 
   <main>
-    <div id="stock-list"></div>
 
-    <div class="shopping-list-section">
-      <div class="shopping-btns">
-        <button id="gen-shopping-list" class="gen-btn">買い物リストを表示</button>
-        <button id="print-btn" class="print-btn">印刷する</button>
-      </div>
+    <!-- チェックリスト -->
+    <div id="check-view">
+      <div id="stock-list"></div>
+      <button id="gen-shopping-list" class="gen-btn">買い物リストを表示</button>
+    </div>
+
+    <!-- 買い物リスト -->
+    <div id="shopping-view" class="hidden">
+      <button id="back-btn" class="back-btn">← チェックリストに戻る</button>
       <div id="shopping-list"></div>
     </div>
+
+    <!-- 印刷ボタン（最下部） -->
+    <button id="print-btn" class="print-btn">印刷する</button>
+
   </main>
 
   <script src="data.js"></script>

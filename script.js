@@ -68,6 +68,11 @@ function render(persons, activeConditions, days) {
   }
 }
 
+function setViewMode(mode) {
+  document.getElementById("check-view").classList.toggle("hidden", mode !== "check");
+  document.getElementById("shopping-view").classList.toggle("hidden", mode !== "shopping");
+}
+
 function generateShoppingList() {
   const visible = filterItems(stockItems, currentConditions);
   const toBuy = visible.filter(item => !(checkedItems[item.id] ?? false));
@@ -75,11 +80,18 @@ function generateShoppingList() {
 
   if (toBuy.length === 0) {
     container.innerHTML = '<p class="shopping-empty">「ない」アイテムはありません</p>';
+    setViewMode("shopping");
     return;
   }
 
   const grouped = groupByCategory(toBuy);
-  let html = '<h3 class="shopping-title">買い物リスト</h3>';
+  let html = `
+    <h3 class="shopping-title">買い物リスト</h3>
+    <div class="shopping-col-header">
+      <span>アイテム</span>
+      <span>買い物優先度</span>
+    </div>
+  `;
 
   for (const [category, items] of Object.entries(grouped)) {
     html += `<p class="shopping-cat-name">${category}</p><ul class="shopping-items">`;
@@ -113,6 +125,7 @@ function generateShoppingList() {
   }
 
   container.innerHTML = html;
+  setViewMode("shopping");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -165,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("gen-shopping-list").addEventListener("click", generateShoppingList);
+  document.getElementById("back-btn").addEventListener("click", () => setViewMode("check"));
   document.getElementById("print-btn").addEventListener("click", () => window.print());
 
   personsInput.addEventListener("input", update);
