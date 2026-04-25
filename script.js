@@ -98,8 +98,9 @@ function render(persons, activeConditions, days) {
       container.appendChild(gh2);
 
       specialGrid = document.createElement("div");
-      specialGrid.className = "special-sections-grid";
+      specialGrid.className = "special-grid";
       container.appendChild(specialGrid);
+
       specialGroupStarted = true;
     }
 

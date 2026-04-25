@@ -275,16 +275,15 @@ main {
   height: 20px;
 }
 
-.special-sections-grid {
+.special-grid {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  align-items: start;
+  gap: 14px;
 }
 
 @media (max-width: 640px) {
-  .special-sections-grid { grid-template-columns: 1fr; }
+  .special-grid { grid-template-columns: 1fr; }
 }
 
 /* =====================
