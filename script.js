@@ -72,7 +72,6 @@ function render(persons, activeConditions, days) {
 
   let basicGroupStarted   = false;
   let specialGroupStarted = false;
-  let specialGrid         = null;
 
   for (const [category, items] of Object.entries(grouped)) {
     const isBasic   = BASIC_CATEGORIES.has(category);
@@ -96,11 +95,6 @@ function render(persons, activeConditions, days) {
       gh2.className = "group-heading group-heading--special";
       gh2.innerHTML = `<span class="group-heading-jp">世帯別の備え</span><span class="group-heading-en">FOR YOUR HOUSEHOLD</span>`;
       container.appendChild(gh2);
-
-      specialGrid = document.createElement("div");
-      specialGrid.className = "special-grid";
-      container.appendChild(specialGrid);
-
       specialGroupStarted = true;
     }
 
@@ -116,9 +110,9 @@ function render(persons, activeConditions, days) {
     for (const item of items) {
       const qty       = calcRequired(item, persons, days);
       const isChecked = checkedItems[item.id] ?? false;
-      const noteHtml  = item.calcType === "per_day"
-        ? '<span class="item-note">一人分の目安です</span>'
-        : "";
+      const qtyDisplay = item.calcType === "per_day"
+        ? `${item.value}<small>${item.unit}/日</small>`
+        : `${qty}<small>${item.unit}</small>`;
       const illustSvg = ILLUST[item.id] || "";
 
       const li = document.createElement("li");
@@ -127,10 +121,9 @@ function render(persons, activeConditions, days) {
         <div class="item-info">
           <span class="item-name">${item.name}</span>
           <span class="item-name-en">${item.en || ""}</span>
-          ${noteHtml}
         </div>
         <div class="item-right">
-          <span class="item-qty">${qty}<small>${item.unit}</small></span>
+          <span class="item-qty">${qtyDisplay}</span>
           <div class="switch-wrap">
             <span class="switch-label-off ${!isChecked ? "active" : ""}">ない</span>
             <label class="switch">
@@ -145,7 +138,7 @@ function render(persons, activeConditions, days) {
     }
 
     section.appendChild(ul);
-    (isBasic ? container : specialGrid).appendChild(section);
+    container.appendChild(section);
   }
 }
 
@@ -219,9 +212,9 @@ function generateShoppingList() {
     for (const item of items) {
       const qty      = calcRequired(item, currentPersons, days);
       const priority = priorityItems[item.id] ?? "";
-      const noteHtml = item.calcType === "per_day"
-        ? '<span class="item-note">目安/日</span>'
-        : "";
+      const qtyLabel = item.calcType === "per_day"
+        ? `${item.value}${item.unit}/日`
+        : `${qty}${item.unit}`;
 
       html += `
         <li>
@@ -229,11 +222,11 @@ function generateShoppingList() {
             <input type="checkbox" />
             <div class="item-info">
               <span class="item-name-jp">${item.name}</span>
-              <span class="item-name-en-small">${item.en || ""}${noteHtml}</span>
+              <span class="item-name-en-small">${item.en || ""}</span>
             </div>
           </label>
           <div class="shopping-item-right">
-            <span class="shopping-qty-badge${isBasic ? "" : " shopping-qty-badge--special"}">${qty}${item.unit}</span>
+            <span class="shopping-qty-badge${isBasic ? "" : " shopping-qty-badge--special"}">${qtyLabel}</span>
             <div class="priority-group">
               <label class="priority-radio">
                 <input type="radio" name="priority-${item.id}" value="high"   data-id="${item.id}" ${priority === "high"   ? "checked" : ""}/>
