@@ -2,35 +2,37 @@
    防災備蓄チェックリスト — Zen Maru Gothic × Navy
    =================================================== */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --navy:         #2c3e5a;
-  --navy-mid:     #3d5270;
-  --navy-pale:    #eef1f7;
-  --navy-light:   #dce3ef;
-  --bg:           #fdfcfa;
-  --bg-mid:       #f5f3ef;
-  --border:       #dcdad4;
-  --border-dot:   #ccc9c0;
-  --ink:          #1e2a38;
-  --ink-mid:      #4a5568;
-  --ink-light:    #8a96a8;
-  --amber:        #7a5e30;
-  --amber-pale:   #f5f0e6;
+  --navy: #2c3e5a;
+  --navy-mid: #3d5270;
+  --navy-pale: #eef1f7;
+  --navy-light: #dce3ef;
+  --bg: #fdfcfa;
+  --bg-mid: #f5f3ef;
+  --border: #dcdad4;
+  --border-dot: #ccc9c0;
+  --ink: #1e2a38;
+  --ink-mid: #4a5568;
+  --ink-light: #8a96a8;
+  --amber: #7a5e30;
+  --amber-pale: #f5f0e6;
   --amber-border: #d4c4a0;
-  --special:      #3d5e3a;
+  --special: #3d5e3a;
   --special-pale: #edf4ec;
-  --special-lgt:  #c4d8c0;
-  --radius-sm:    6px;
-  --radius-md:    10px;
-  --radius-lg:    14px;
-  --shadow-card:  0 1px 6px rgba(30,42,56,0.07);
-  --shadow-soft:  0 2px 16px rgba(30,42,56,0.08);
+  --special-lgt: #c4d8c0;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: 0 1px 6px rgba(30, 42, 56, 0.07);
+  --shadow-soft: 0 2px 16px rgba(30, 42, 56, 0.08);
 }
 
 body {
@@ -41,7 +43,9 @@ body {
   line-height: 1.65;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
 /* =====================
    ヘッダー
@@ -60,7 +64,7 @@ header::before {
   top: -40px;
   width: 200px;
   height: 200px;
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 50%;
 }
 
@@ -71,13 +75,13 @@ header::after {
   top: 24px;
   width: 110px;
   height: 110px;
-  border: 1px solid rgba(255,255,255,0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 50%;
 }
 
 .header-label {
   font-size: 0.58rem;
-  color: rgba(255,255,255,0.38);
+  color: rgba(255, 255, 255, 0.38);
   letter-spacing: 0.22em;
   margin-bottom: 10px;
   display: block;
@@ -94,7 +98,7 @@ header h1 {
 
 header p {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 8px;
   position: relative;
 }
@@ -140,12 +144,14 @@ main {
   background: #fff;
   color: var(--navy);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .input-section input:focus {
   border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(44,62,90,0.12);
+  box-shadow: 0 0 0 3px rgba(44, 62, 90, 0.12);
 }
 
 .input-section > span {
@@ -207,7 +213,10 @@ main {
   color: var(--ink-mid);
   cursor: pointer;
   letter-spacing: 0.04em;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .tab-btn.active {
@@ -235,7 +244,9 @@ main {
 }
 
 @media (max-width: 640px) {
-  #stock-list { grid-template-columns: 1fr; }
+  #stock-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .group-heading {
@@ -273,17 +284,6 @@ main {
 .group-separator {
   grid-column: 1 / -1;
   height: 20px;
-}
-
-.special-grid {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 640px) {
-  .special-grid { grid-template-columns: 1fr; }
 }
 
 /* =====================
@@ -363,7 +363,9 @@ main {
   align-items: center;
   justify-content: center;
   padding: 4px;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .item-illust--checked {
@@ -472,7 +474,7 @@ main {
   background: #fff;
   border-radius: 50%;
   transition: transform 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
 }
 
 .switch input:checked + .switch-track {
@@ -499,10 +501,18 @@ main {
   transition: opacity 0.2s;
 }
 
-.switch-label-off { color: var(--ink-mid); }
-.switch-label-off.active { opacity: 1; }
-.switch-label-on  { color: var(--navy); }
-.switch-label-on.active  { opacity: 1; }
+.switch-label-off {
+  color: var(--ink-mid);
+}
+.switch-label-off.active {
+  opacity: 1;
+}
+.switch-label-on {
+  color: var(--navy);
+}
+.switch-label-on.active {
+  opacity: 1;
+}
 
 /* =====================
    ボタン行
@@ -524,7 +534,9 @@ main {
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
   letter-spacing: 0.04em;
 }
 
@@ -546,7 +558,7 @@ main {
   cursor: pointer;
   letter-spacing: 0.05em;
   transition: background 0.15s;
-  box-shadow: 0 3px 10px rgba(44,62,90,0.22);
+  box-shadow: 0 3px 10px rgba(44, 62, 90, 0.22);
 }
 
 .gen-btn:hover {
@@ -827,8 +839,12 @@ main {
   flex-shrink: 0;
 }
 
-.priority-radio { cursor: pointer; }
-.priority-radio input[type="radio"] { display: none; }
+.priority-radio {
+  cursor: pointer;
+}
+.priority-radio input[type="radio"] {
+  display: none;
+}
 
 .priority-radio span {
   display: inline-block;
@@ -838,7 +854,10 @@ main {
   border: 1.5px solid var(--border);
   border-radius: 999px;
   color: var(--ink-light);
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
   cursor: pointer;
 }
 
@@ -910,7 +929,10 @@ main {
   border-radius: var(--radius-md);
   cursor: pointer;
   letter-spacing: 0.05em;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .print-btn:hover {
@@ -941,8 +963,12 @@ main {
    レスポンシブ（モバイル）
    ===================== */
 @media (max-width: 680px) {
-  header { padding: 22px 18px 18px; }
-  header h1 { font-size: 1.3rem; }
+  header {
+    padding: 22px 18px 18px;
+  }
+  header h1 {
+    font-size: 1.3rem;
+  }
 
   .input-section,
   .condition-section,
@@ -961,14 +987,19 @@ main {
     gap: 12px;
   }
 
-  main { padding: 0 14px 48px; }
+  main {
+    padding: 0 14px 48px;
+  }
 }
 
 /* =====================
    印刷スタイル
    ===================== */
 @media print {
-  body { background: #fff; font-size: 10pt; }
+  body {
+    background: #fff;
+    font-size: 10pt;
+  }
 
   header,
   .tab-section,
@@ -983,7 +1014,10 @@ main {
     display: none !important;
   }
 
-  main { padding: 0; max-width: 100%; }
+  main {
+    padding: 0;
+    max-width: 100%;
+  }
 
   #shopping-view {
     display: block !important;
@@ -992,8 +1026,14 @@ main {
     padding: 0;
   }
 
-  .print-title { display: block; margin-bottom: 4px; }
-  .print-date  { display: block; margin-bottom: 12px; }
+  .print-title {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .print-date {
+    display: block;
+    margin-bottom: 12px;
+  }
 
   .shopping-header {
     box-shadow: none;

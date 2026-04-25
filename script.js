@@ -181,23 +181,10 @@ function generateShoppingList() {
     <div class="shopping-grid">
   `;
 
-  let basicGroupStarted   = false;
-  let specialGroupStarted = false;
-
   for (const [category, items] of Object.entries(grouped)) {
     const isBasic   = BASIC_CATEGORIES.has(category);
     const firstItem = items[0];
     const catEn     = firstItem.catEn || "";
-
-    if (isBasic && !basicGroupStarted) {
-      html += `<div class="shopping-group-heading full-width"><span>非常持ち出し袋</span></div>`;
-      basicGroupStarted = true;
-    }
-
-    if (!isBasic && !specialGroupStarted) {
-      html += `<div class="shopping-special-divider full-width"><span>世帯別の備え</span></div>`;
-      specialGroupStarted = true;
-    }
 
     html += `
       <div class="shopping-cat-block${isBasic ? "" : " shopping-cat-block--special"}">
